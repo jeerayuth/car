@@ -1,0 +1,25 @@
+โปรแกรมบริหารจัดการยานพาหนะ เวอร์ชั่น 1.0
+Develop By จีระยุทธ ปิ่นสุวรรณ  manmakemoney@gmail.com
+
+วิธีการติดตั้งเบื้องต้น
+1. ทำการสร้าง Database ชื่อ db_car 
+2. นำเข้าไฟล์ db_car.sql ไปยังฐานข้อมูล
+3. copy โฟลเดอร์โปรเจ็ค car ทั้งหมดไปไว้ที่ web server
+ตัวอย่าง Webserver เป็น Apache Webserver
+ก็ให้ copy โฟลเดอร์ car ไปไว้ที่ c:\appserv\www\
+
+4. ทดสอบรันใน Browser 
+http://localhost/car/app
+
+5. User&Password
+User: admin
+Password: admin
+
+
+หมายเหตุ : 
+
+- ให้เปิดโปรแกรมนี้ กับ Mozilla Firefox เป็นลำดับแรก  เพราะ Google Crome, IE
+อาจมีปัญหาในการเปิดดูรายงาน
+
+- สามารถเปลี่ยนหน่วยงานเป็นหน่วยงานของท่าน โดยไปที่ เมนู  ตั้งค่าโปรแกรม ->หน่วยงาน
+
