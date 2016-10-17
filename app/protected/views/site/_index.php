@@ -33,7 +33,7 @@
 						'class' => 'CLinkColumn',
 						'imageUrl' => 'images/edit.png',
 						'labelExpression' => 'แก้ไขข้อมูล',
-						 'urlExpression' => 'Yii::app()->createUrl("site/car",array("id"=>$data->id))',
+						 'urlExpression' => 'Yii::app()->createUrl("site/orders",array("id"=>$data->id))',
 						'htmlOptions' => array(
                 			'style' => 'text-align:center',
                 			'id' => 'opener'

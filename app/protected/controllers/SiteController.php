@@ -4,12 +4,22 @@ class SiteController extends Controller {
 
     public function actionIndex() {
 
-        $model = Orders::model()->findAll();
-        $provider = new CActiveDataProvider('Orders');
+      $model = Orders::model()->findAll();
+       
+      $provider = new CActiveDataProvider('Orders', array(
+			'criteria' => array(
+				'condition' => 'company_id=' . Yii::app()->session["company_id"],
+				'order' => 'dateadd DESC',
+			),
+			'pagination' => array(
+				'pageSize' => 30,
+			),
+		));
 
+    
         $this->render("//site/index", array(
             "model" => $model,
-            "provider"=> $provider,
+            "provider" => $provider,
         ));
     }
 
@@ -46,7 +56,7 @@ class SiteController extends Controller {
     public function actionOrders($id = null) {
         //insert, update orders
         $model = new Orders();
-  
+
 
         if (!empty($_POST["Orders"])) {
             // 1.step new orders
@@ -72,7 +82,6 @@ class SiteController extends Controller {
 
         $this->render("//site/orders", array(
             "model" => $model,
-    
         ));
     }
 
