@@ -3,20 +3,33 @@
 class SiteController extends Controller {
 
     public function actionIndex() {
+        // ใช้กับปฏิทิน
+        $model = Orders::model()->findAll();
+        
+        // ใช้กับประวัติการขอรถ
+        if (!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้"){
+            $provider = new CActiveDataProvider('Orders', array(
+                'criteria' => array(
+                    'condition' => 'company_id=' . Yii::app()->session["company_id"],
+                    'order' => 'dateadd DESC',
+                ),
+                'pagination' => array(
+                    'pageSize' => 20,
+                ),
+            ));
+                    
+        } else if (!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
+            $provider = new CActiveDataProvider('Orders', array(
+                'criteria' => array(
+                    'order' => 'dateadd DESC',
+                ),
+                'pagination' => array(
+                    'pageSize' => 20,
+                ),
+            ));
+        }
 
-      $model = Orders::model()->findAll();
-       
-      $provider = new CActiveDataProvider('Orders', array(
-			'criteria' => array(
-				'condition' => 'company_id=' . Yii::app()->session["company_id"],
-				'order' => 'dateadd DESC',
-			),
-			'pagination' => array(
-				'pageSize' => 30,
-			),
-		));
 
-    
         $this->render("//site/index", array(
             "model" => $model,
             "provider" => $provider,
@@ -63,9 +76,9 @@ class SiteController extends Controller {
             $model = new Orders();
             // 2.step edit orders
             if (!empty($id)) {
-                $model = Orders::model()->findByPk($id);
+                $model = Orders::model()->findByPk($id);  
             }
-
+            
             // 3. step merge data
             $model->_attributes = $_POST["Orders"];
             $model->dateupdate = date("Y-m-d h:i:s");

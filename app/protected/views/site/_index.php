@@ -1,12 +1,14 @@
 <ol class="breadcrumb">
     <li><a href="#">ส่วนผู้ใช้</a></li>
-    <li class="active">ปฏิทินกิจกรรมการใช้รถ</li>
+    <li>ปฏิทินกิจกรรมการใช้รถ</li>
 </ol>
 
 <div id="tabs">
     <ul>
-        <li><a href="#tabs-1">ปฏิทินการใช้รถ</a></li>
-        <li><a href="#tabs-2">ประวัติการขอใช้รถ</a></li>
+        <li><a href="#tabs-1">ปฏิทินกิจกรรมการใช้รถ</a></li> 
+        <?php if (!empty($provider)) { ?>
+            <li><a href="#tabs-2" >ประวัติการขอใช้รถ</a></li>
+        <?php } ?>
     </ul>
 
     <!-- Carlendar -->
@@ -15,34 +17,36 @@
         <br/><br/>
         <div id="calendar"></div>
     </div>
-    
+
     <div id ="tabs-2">
         <?php
-			$this->widget('zii.widgets.grid.CGridView', array(
-				'id' => 'car-grid',
-				'dataProvider' => $provider,
-				'columns' => array(
-                                        'title',
-					'person_name',
-					'datetogo',
-                                        'datetosuccess',
-                                        'person_number',
-                                        'status',
-					array(
-						'header' => 'แก้ไข',
-						'class' => 'CLinkColumn',
-						'imageUrl' => 'images/edit.png',
-						'labelExpression' => 'แก้ไขข้อมูล',
-						 'urlExpression' => 'Yii::app()->createUrl("site/orders",array("id"=>$data->id))',
-						'htmlOptions' => array(
-                			'style' => 'text-align:center',
-                			'id' => 'opener'
-            			)
-					),
-
-				)
-			));
-		?>
+        if (!empty($provider)) {
+            $this->widget('zii.widgets.grid.CGridView', array(
+                'id' => 'car-grid',
+                'dataProvider' => $provider,
+                'columns' => array(
+                    'title',
+                    'person_name',
+                    'datetogo',
+                    'datetosuccess',
+                    'person_number',
+                    'status',
+                    array(
+                        'header' => 'แก้ไข',
+                        'class' => 'CLinkColumn',
+                        'imageUrl' => 'images/edit.png',
+                        'labelExpression' => 'แก้ไขข้อมูล',
+                        'urlExpression' => 'Yii::app()->createUrl("site/orders",array("id"=>$data->id))',
+                        'linkHtmlOptions' => array('target' => '_blank'),
+                        'htmlOptions' => array(
+                            'style' => 'text-align:center',
+                            'id' => 'opener'
+                        )
+                    ),
+                )
+            ));
+        }
+        ?>
     </div>
 
 </div>
@@ -70,7 +74,6 @@ foreach ($model as $data) {
     if ($data->status == "รออนุมัติ") {
         $url = "site/orders";
         $img = "images/edit.png";
-        //	$image = "edit.png";
     } else if ($data->status == "อนุมัติ") {
         $url = "site/card";
         $img = "images/car.png";
@@ -98,7 +101,7 @@ foreach ($model as $data) {
 
     // step 4 set properties for fullcalendar
     echo "{";
-    echo "title: '" . $data->activities->name . "',";
+    echo "title: '" . '[งาน'.$data->company->name . ' รถออก '. $hour_created.'.'.$min_created.'น.]' . "',";
     echo "start: new Date(" . $year_created . "," . $month_created . "," . $day_created . "," . $hour_created . "," . $min_created . "),";
     echo "end: new Date(" . $year_success . "," . $month_success . "," . $day_success . "," . $hour_success . "," . $min_success . "),";
     echo "url: '" . Yii::app()->createUrl('site/orders', array("id" => $data->id)) . "',";
@@ -124,6 +127,10 @@ foreach ($model as $data) {
 
 
     });
+
+
+
+
 
 
 

@@ -20,12 +20,12 @@
         ));
         ?>
         <div>
-<?php echo $form->errorSummary($model); ?>
+            <?php echo $form->errorSummary($model); ?>
         </div>
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "title"); ?>
-<?php echo $form->textField($model, "title", array("class" => "form-control", "style" => "width: 600px;")); ?>
+            <?php echo $form->labelEx($model, "title"); ?>
+            <?php echo $form->textField($model, "title", array("class" => "form-control", "style" => "width: 600px;")); ?>
         </div>
 
         <div class="form-group">
@@ -37,40 +37,40 @@
         </div>
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "person_name"); ?>
+            <?php echo $form->labelEx($model, "person_name"); ?>
             <?php echo $form->textField($model, "person_name", array("class" => "form-control", "style" => "width: 280px;")); ?>
         </div>
         <div class="form-group">
-<?php echo $form->labelEx($model, "person_position"); ?>
-<?php echo $form->textField($model, "person_position", array("class" => "form-control", "style" => "width: 280px;")); ?>
+            <?php echo $form->labelEx($model, "person_position"); ?>
+            <?php echo $form->textField($model, "person_position", array("class" => "form-control", "style" => "width: 280px;")); ?>
         </div>
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "person_level"); ?>
-<?php echo $form->textField($model, "person_level", array("class" => "form-control", "style" => "width: 280px;")); ?>
+            <?php echo $form->labelEx($model, "person_level"); ?>
+            <?php echo $form->textField($model, "person_level", array("class" => "form-control", "style" => "width: 280px;")); ?>
         </div>
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "place"); ?>
-<?php echo $form->textField($model, "place", array("class" => "form-control", "style" => "width: 280px;")); ?>
+            <?php echo $form->labelEx($model, "place"); ?>
+            <?php echo $form->textField($model, "place", array("class" => "form-control", "style" => "width: 280px;")); ?>
         </div>
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "person_number"); ?>
-<?php echo $form->textField($model, "person_number", array("class" => "form-control", "style" => "width:280px", "id" => "person_number")); ?>
+            <?php echo $form->labelEx($model, "person_number"); ?>
+            <?php echo $form->textField($model, "person_number", array("class" => "form-control", "style" => "width:280px", "id" => "person_number")); ?>
         </div>
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "datetogo"); ?>
+            <?php echo $form->labelEx($model, "datetogo"); ?>
             <?php echo $form->textField($model, "datetogo", array("class" => "form-control", "style" => "width:280px", "id" => "datetogo")); ?>
         </div>
         <div class="form-group">
-<?php echo $form->labelEx($model, "datetosuccess"); ?>
-<?php echo $form->textField($model, "datetosuccess", array("class" => "form-control", "style" => "width:280px", "id" => "datetosuccess")); ?>
+            <?php echo $form->labelEx($model, "datetosuccess"); ?>
+            <?php echo $form->textField($model, "datetosuccess", array("class" => "form-control", "style" => "width:280px", "id" => "datetosuccess")); ?>
         </div>
 
 
-            <?php if (Yii::app()->session["user_type"] == "แอดมิน"): ?>
+        <?php if (Yii::app()->session["user_type"] == "แอดมิน"): ?>
             <div class="form-group">
                 <?php echo $form->labelEx($model, "activities_id"); ?>
                 <?php
@@ -96,50 +96,50 @@
 
 
             <div class="form-group">
-    <?php echo $form->labelEx($model, "milestogo"); ?>
+                <?php echo $form->labelEx($model, "milestogo"); ?>
                 <?php echo $form->textField($model, "milestogo", array("class" => "form-control", "style" => "width: 150px;")); ?>
             </div>
             <div class="form-group">
-    <?php echo $form->labelEx($model, "milestosuccess"); ?>
+                <?php echo $form->labelEx($model, "milestosuccess"); ?>
                 <?php echo $form->textField($model, "milestosuccess", array("class" => "form-control", "style" => "width: 150px;")); ?>
             </div>
             <div class="form-group">
-    <?php echo $form->labelEx($model, "oil"); ?>
+                <?php echo $form->labelEx($model, "oil"); ?>
                 <?php echo $form->textField($model, "oil", array("class" => "form-control", "style" => "width: 280px;")); ?>
             </div>
             <div class="form-group">
-    <?php echo $form->labelEx($model, "price"); ?>
+                <?php echo $form->labelEx($model, "price"); ?>
                 <?php echo $form->textField($model, "price", array("class" => "form-control", "style" => "width: 150px;")); ?>
             </div>
             <div class="form-group">
-    <?php echo $form->labelEx($model, "repair"); ?>
+                <?php echo $form->labelEx($model, "repair"); ?>
                 <?php echo $form->textField($model, "repair", array("class" => "form-control", "style" => "width: 150px;")); ?>
             </div>
             <div class="form-group">
-    <?php echo $form->labelEx($model, "details"); ?>
-    <?php echo $form->textField($model, "details", array("class" => "form-control", "style" => "width: 280px;")); ?>
+                <?php echo $form->labelEx($model, "details"); ?>
+                <?php echo $form->textField($model, "details", array("class" => "form-control", "style" => "width: 280px;")); ?>
             </div>
 
 
-                <?php if ((Yii::app()->session["user_type"] == "ผู้อนุมัติ") OR ( Yii::app()->session["user_type"] == "แอดมิน")): ?>
+            <?php if ((Yii::app()->session["user_type"] == "ผู้อนุมัติ") OR ( Yii::app()->session["user_type"] == "แอดมิน")): ?>
                 <div class="form-group">
-                <?php echo $form->labelEx($model, "status"); ?>
-                <?php echo ZHtml::enumDropDownList($model, "status", array("class" => "form-control", "style" => "width:250px")); ?>
+                    <?php echo $form->labelEx($model, "status"); ?>
+                    <?php echo ZHtml::enumDropDownList($model, "status", array("class" => "form-control", "style" => "width:250px")); ?>
                 </div>
             <?php endif ?>
 
-            <?php endif ?> <!-- end check permission for admin-->
+        <?php endif ?> <!-- end check permission for admin-->
 
         <div class="form-group">
-<?php echo $form->labelEx($model, "comment"); ?>
-<?php echo $form->textField($model, "comment", array("class" => "form-control", "style" => "width: 700px;")); ?>
+            <?php echo $form->labelEx($model, "comment"); ?>
+            <?php echo $form->textField($model, "comment", array("class" => "form-control", "style" => "width: 700px;")); ?>
         </div>
 
         <div class="form-group">
             <input class="btn btn-lg btn-success btn-block" type="submit" value="บันทึกข้อมูลการใช้รถยนต์" style="margin-left: 140px;margin-top: 5px">
         </div>
 
-<?php $this->endWidget(); ?>
+        <?php $this->endWidget(); ?>
     </div>
 
 
