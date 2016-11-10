@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'โปรแกรมบริหารจัดการยานพาหนะ',
+	'name'=>'โปรแกรมบริหารยานพาหนะ',
 	'language' => 'th',
 
 	// preloading 'log' component
@@ -87,6 +87,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'info@gmail.com',
 	),
 );

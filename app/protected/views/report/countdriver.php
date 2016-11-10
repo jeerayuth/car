@@ -29,9 +29,9 @@ $html.="
 $html.='<table width="700px">
 		<thead>
 			<tr>
-				<td class="cell-header" width="200px">ชื่อพนักงานขับรถ</td>
-				<td class="cell-header" width="50px">จำนวนครั้ง</td>
-				<td class="cell-header" width="50px">จำนวนระยะทาง</td>
+				<td class="cell-header" width="500px">ชื่อพนักงานขับรถ</td>
+				<td class="cell-header" width="100px" >จำนวนครั้ง</td>
+				<td class="cell-header" width="100px" >จำนวนระยะทาง</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,8 +41,8 @@ $html.='<table width="700px">
 		$html .= "
 			<tr>
 				<td class='cell-body'>".$item['driver_name']."</td>
-				<td class='cell-body'>".$item['count_driver']."</td>
-				<td class='cell-body'>".$item['count_miles']."</td>
+				<td class='cell-body' align='center'>".$item['count_driver']."</td>
+				<td class='cell-body' align='center'>".$item['count_miles']."</td>
 			</tr>
 		";
 	}

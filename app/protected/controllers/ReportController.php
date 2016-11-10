@@ -79,7 +79,8 @@ class ReportController extends Controller
 					FROM orders o
 					WHERE
 						o.datetogo BETWEEN '". $datestart ."' AND '". $dateend ."' AND
-						o.driver_id = d.id AND o.status='อนุมัติ'
+						o.driver_id = d.id AND o.status='อนุมัติ' and o.milestosuccess!=''
+                                                and o.milestogo != ''
 					) As count_miles
 			FROM driver d ";
 
@@ -102,8 +103,8 @@ class ReportController extends Controller
 
 		$sql = "
 			SELECT
-				DATE_FORMAT(o.datetogo, '%d-%m-%Y ') As datetogo,
-				DATE_FORMAT(o.datetosuccess, '%d-%m-%Y') AS datetosuccess,
+                        concat(DAY(o.datetogo),'/',MONTH(o.datetogo),'/',(YEAR(o.datetogo)+543)) as datetogo,
+                        concat(DAY(o.datetosuccess),'/',MONTH(o.datetosuccess),'/',(YEAR(o.datetosuccess)+543)) as datetosuccess,				
 				o.place AS place,
 				DATE_FORMAT(o.datetogo, '%h:%i') AS timetogo,
 				DATE_FORMAT(o.datetosuccess, '%h:%i') AS timetosuccess,

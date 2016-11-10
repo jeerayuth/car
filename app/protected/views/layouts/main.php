@@ -27,7 +27,6 @@
               <!-- import css custom -->
               <link rel="stylesheet" href="../_style.css" />
 
-
     </head>
 
     <body>
@@ -41,11 +40,9 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <?php if (Yii::app()->session["user_type"] == "แอดมิน"): ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-refresh"></i> กิจกรรมการใช้รถ <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/calendar" ><i class="glyphicon glyphicon-calendar"></i> ปฏิทินกิจกรรมการใช้รถ</a></li>
-                                </ul>
+                            <li >
+                                <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site" ><i class="glyphicon glyphicon-refresh"></i> กิจกรรมการใช้รถ <span class="caret"></span></a>
+                            </li> 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-list"></i> รายงานการใช้รถ <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -98,7 +95,7 @@
         <div id="dialog" style="display:none" >
             คุณต้องการออกจากโปรแกรม?
         </div>
-
+        
         <!-- import jquery libary -->
         <?php
         // import js standard jquery
@@ -122,6 +119,9 @@
         Yii::app()->clientScript->registerScriptFile("../colorpicker/lib/dependencies/tinycolor-0.9.15.min.js");
         Yii::app()->clientScript->registerScriptFile("../colorpicker/lib/1.2.3/js/pick-a-color-1.2.3.min.js");
 
+        // import js highchart
+        Yii::app()->clientScript->registerScriptFile("../highcharts/highcharts.js");
+      
         // import js custom
         Yii::app()->clientScript->registerScriptFile("../_js.js");
         ?>

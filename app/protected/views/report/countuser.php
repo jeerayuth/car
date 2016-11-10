@@ -29,8 +29,8 @@ $html.="
 $html.='<table width="700px">
 		<thead>
 			<tr>
-				<td class="cell-header" width="200px">ผู้ขอใช้รถ</td>
-				<td class="cell-header" width="50px">จำนวนครั้งการขอใช้</td>
+				<td class="cell-header" width="600px">หน่วยงาน</td>
+				<td class="cell-header" width="100px">จำนวนครั้งการขอใช้</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,7 +40,7 @@ $html.='<table width="700px">
 		$html .= "
 			<tr>
 				<td class='cell-body'>".$item['name']."</td>
-				<td class='cell-body'>".$item['count_use']."</td>
+				<td class='cell-body' align='center'>".$item['count_use']."</td>
 			</tr>
 		";
 	}

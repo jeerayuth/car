@@ -8,6 +8,7 @@
         <li><a href="#tabs-1">ปฏิทินกิจกรรมการใช้รถ</a></li> 
         <?php if (!empty($provider)) { ?>
             <li><a href="#tabs-2" >ประวัติการขอใช้รถ</a></li>
+            <li><a href="#tabs-3" >กราฟสถิติการขอใช้รถ</a></li>
         <?php } ?>
     </ul>
 
@@ -49,14 +50,53 @@
         ?>
     </div>
 
+    <div id ="tabs-3"> <?php
+        if (!empty($provider)) { ?>
+        <div id="container" style="width:70%; height:400px;"></div>
+       <?php } ?>
+    </div>
+
 </div>
 
 
 <script language="javascript">
 
     $(function () {
+        // Tab
         $("#tabs").tabs();
 
+        $('#container').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Fruit Consumption'
+            },
+            xAxis: {
+                categories: ['Apples', 'Bananas', 'Oranges']
+            },
+            yAxis: {
+                title: {
+                    text: 'Fruit eaten'
+                }
+            },
+            series: [{
+                    name: 'Jane',
+                    data: [1, 0, 4]
+                }, {
+                    name: 'John',
+                    data: [5, 7, 3]
+                }],
+        });
+
+
+
+
+
+
+
+
+        // Calendar
         $('#calendar').fullCalendar({
             lang: 'th',
             header: {
@@ -98,15 +138,13 @@ foreach ($model as $data) {
     // step 3 set color for car event
     $color = "#" . $data->car->color;
 
-
     // step 4 set properties for fullcalendar
     echo "{";
-    echo "title: '" . '[งาน'.$data->company->name . ' รถออก '. $hour_created.'.'.$min_created.'น.]' . "',";
+    echo "title: '" . 'เรื่อง' . $data->title . ' (หน่วยงานที่ขอ: ' . $data->company->name . ')' . "',";
     echo "start: new Date(" . $year_created . "," . $month_created . "," . $day_created . "," . $hour_created . "," . $min_created . "),";
     echo "end: new Date(" . $year_success . "," . $month_success . "," . $day_success . "," . $hour_success . "," . $min_success . "),";
     echo "url: '" . Yii::app()->createUrl('site/orders', array("id" => $data->id)) . "',";
     echo "color: '" . $color . "',";
-    echo "imageurl:'" . $img . "'";
     echo "},";
 }
 ?>
