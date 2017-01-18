@@ -9,7 +9,7 @@
 		function attributeLabels(){
 			return array(
                                 "title" => "เรื่อง",
-                                "person_name" => "ชื่อผู้ขอ",
+                                "person_name" => "ชื่อผู้ขอใช้รถ",
                                 "person_position" => "ตำแหน่ง",
                                 "person_level" => "ระดับ",
                                 "person_number" => "จำนวนคน",

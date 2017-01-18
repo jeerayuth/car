@@ -6,51 +6,24 @@
 <div id="tabs">
     <ul>
         <li><a href="#tabs-1">ปฏิทินกิจกรรมการใช้รถ</a></li> 
-        <?php if (!empty($provider)) { ?>
-            <li><a href="#tabs-2" >ประวัติการขอใช้รถ</a></li>
-            <li><a href="#tabs-3" >กราฟสถิติการขอใช้รถ</a></li>
-        <?php } ?>
     </ul>
 
     <!-- Carlendar -->
     <div id="tabs-1">
-        <div class="pull-right" style="padding-bottom:10px"><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/orders" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a></div>
+        <div class="pull-right" style="padding-bottom:10px">
+            <?php if (Yii::app()->session["username"] == null){ ?>
+                <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/frmlogin" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
+            <?php } else {?>
+                <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/orders" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
+            <?php } ?>
+        </div>
         <br/><br/>
         <div id="calendar"></div>
     </div>
 
-    <div id ="tabs-2">
-        <?php
-        if (!empty($provider)) {
-            $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'car-grid',
-                'dataProvider' => $provider,
-                'columns' => array(
-                    'title',
-                    'person_name',
-                    'datetogo',
-                    'datetosuccess',
-                    'person_number',
-                    'status',
-                    array(
-                        'header' => 'แก้ไข',
-                        'class' => 'CLinkColumn',
-                        'imageUrl' => 'images/edit.png',
-                        'labelExpression' => 'แก้ไขข้อมูล',
-                        'urlExpression' => 'Yii::app()->createUrl("site/orders",array("id"=>$data->id))',
-                        'linkHtmlOptions' => array('target' => '_blank'),
-                        'htmlOptions' => array(
-                            'style' => 'text-align:center',
-                            'id' => 'opener'
-                        )
-                    ),
-                )
-            ));
-        }
-        ?>
-    </div>
+    
 
-    <div id ="tabs-3"> <?php
+    <div id ="tabs-2"> <?php
         if (!empty($provider)) { ?>
         <div id="container" style="width:70%; height:400px;"></div>
        <?php } ?>

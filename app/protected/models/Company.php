@@ -9,7 +9,7 @@ class Company extends CActiveRecord {
 		}
 		function attributeLabels(){
 			return array(
-				"name" => "ชื่อผู้ขอใช้รถ"
+				"name" => "หน่วยงาน"
 			);
 		}
 		function rules(){

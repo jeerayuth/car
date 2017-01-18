@@ -4,36 +4,22 @@ class SiteController extends Controller {
 
     public function actionIndex() {
         // ใช้กับปฏิทิน
-        $model = Orders::model()->findAll();
-        
-        // ใช้กับประวัติการขอรถ
-        if (!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้"){
-            $provider = new CActiveDataProvider('Orders', array(
-                'criteria' => array(
-                    'condition' => 'company_id=' . Yii::app()->session["company_id"],
-                    'order' => 'dateadd DESC',
-                ),
-                'pagination' => array(
-                    'pageSize' => 20,
-                ),
-            ));
-                    
-        } else if (!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
-            $provider = new CActiveDataProvider('Orders', array(
-                'criteria' => array(
-                    'order' => 'dateadd DESC',
-                ),
-                'pagination' => array(
-                    'pageSize' => 20,
-                ),
-            ));
-        }
-
-
+        $id ="อนุมัติ";
+        $model = Orders::model()->findAll(      
+             array(
+                      'condition' => 'status = :status',
+                      'params'    => array(':status' => $id)
+                  )       
+        );
+              
         $this->render("//site/index", array(
             "model" => $model,
-            "provider" => $provider,
         ));
+    }
+    
+    
+    public function actionFrmLogin() {
+       $this->render("//site/_formlogin");
     }
 
     public function actionLogin() {
@@ -70,7 +56,6 @@ class SiteController extends Controller {
         //insert, update orders
         $model = new Orders();
 
-
         if (!empty($_POST["Orders"])) {
             // 1.step new orders
             $model = new Orders();
@@ -98,14 +83,56 @@ class SiteController extends Controller {
         ));
     }
 
-    public function actionCalendar() {
+ 
+     
+    //
+    public function actionOrdersHistory() {
+        
+         $limit = 0;
+        
+        if(!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้") {
+            $limit = 60;
+        } else if(!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
+            $limit = 120;
+        } else {
+            $limit = 0;
+        }
+        
 
-        $model = Orders::model()->findAll();
+         // ใช้กับประวัติการขอรถ
+        if (!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้"){
+            $provider = new CActiveDataProvider('Orders', array(
+                'criteria' => array(
+                    'condition' => 'company_id=' . Yii::app()->session["company_id"],
+                    'limit' => $limit,
+                    'order' => 'datetogo DESC',
+                    ),
+                   'pagination' => false
+            ));
+                    
+        } else if (!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
+            $provider = new CActiveDataProvider('Orders', array(
+                'criteria' => array(
+                    'limit' => $limit,
+                    'order' => 'dateadd DESC',
+                ),
+                    'pagination' => false
+            ));
+        }
 
-        $this->render("//site/calendar", array(
-            "model" => $model,
+
+        $this->render("//site/ordershistory", array(
+            "provider" => $provider,
         ));
+ 
     }
+    
+    
+    public function actionGraph() {
+                  
+        $this->render("//site/graph");
+    }
+    
 
     public function actionCard($id = null) {
         $this->render("card", array(
