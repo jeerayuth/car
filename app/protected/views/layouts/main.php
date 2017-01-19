@@ -57,7 +57,7 @@
                             </li>
                             
                                                  
-                        <?php if (Yii::app()->session["user_type"] == "แอดมิน"){ ?>
+                        <?php if ((Yii::app()->session["user_type"] == "แอดมิน") OR (Yii::app()->session["user_type"] == "ผู้อนุมัติ")){ ?>
                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-list"></i> รายงานการใช้รถ <span class="caret"></span></a>

@@ -45,6 +45,8 @@
 				 'driver' => array(self::BELONGS_TO,'Driver', 'driver_id'),
 			);
 		}
+                
+          
 
 	}
 

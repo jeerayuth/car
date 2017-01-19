@@ -38,7 +38,7 @@ class SiteController extends Controller {
             Yii::app()->session["username"] = $user->username;
             Yii::app()->session["user_type"] = $user->user_type;
             Yii::app()->session["company_id"] = $_POST["company_id"];
-            $this->redirect("index.php?r=site");
+            $this->redirect("index.php?r=site/ordershistory");
         } else {
             $this->redirect("index.php?r=site");
         }
@@ -70,7 +70,7 @@ class SiteController extends Controller {
 
             // 4. step save/update
             if ($model->save()) {
-                $this->redirect("index.php?r=site");
+                $this->redirect("index.php?r=site/ordershistory");
             }
         }
 
@@ -89,11 +89,14 @@ class SiteController extends Controller {
     public function actionOrdersHistory() {
         
          $limit = 0;
+         $text = "";
         
         if(!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้") {
-            $limit = 60;
+            $limit = 50;
+            $text = "50 อันดับการขอใช้รถล่าสุดภายในหน่วยงาน: ";
         } else if(!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
             $limit = 120;
+            $text = "120 อันดับการขอใช้รถล่าสุด";
         } else {
             $limit = 0;
         }
@@ -123,6 +126,7 @@ class SiteController extends Controller {
 
         $this->render("//site/ordershistory", array(
             "provider" => $provider,
+            "text" => $text,
         ));
  
     }

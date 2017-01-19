@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-    <li><a href="#">ส่วนผู้ใช้</a></li>
+    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site">หน้าหลัก</a></li>
     <li>ปฏิทินกิจกรรมการใช้รถ</li>
 </ol>
 

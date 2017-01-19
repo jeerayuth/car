@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-    <li><a href="#">ส่วนผู้ใช้</a></li>
+    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/ordershistory">หน้าหลัก</a></li>
     <li>ประวัติการขอใช้รถ</li>
 </ol>
 
@@ -9,8 +9,20 @@
             <li><a href="#tabs-1">ประวัติการขอใช้รถ</a></li> 
         <?php } ?>
     </ul>
-
+    
     <div id ="tabs-1">
+        <?php
+             $company_name = Company::model()->findByPk(Yii::app()->session["company_id"]); 
+        ?>
+        
+        <b><?php echo $text; ?> 
+            <?php if(Yii::app()->session["user_type"] == "ผู้ใช้"){ ?>
+                <font color="blue"><?php echo $company_name->name;?></font>
+            <?php } ?>
+        </b>
+        <br/>
+        
+        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/orders" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
         <?php
         if (!empty($provider)) {
             $this->widget('zii.widgets.grid.CGridView', array(
