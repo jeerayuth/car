@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>โปรแกรมบริหารจัดการยานพาหนะ พัฒนาโดย จีระยุทธ ปิ่นสุวรรณ</title>
+	<title>ระบบบริหารจัดการยานพาหนะ พัฒนาโดย จีระยุทธ ปิ่นสุวรรณ</title>
 
 	<!-- import css bootstrap -->
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />

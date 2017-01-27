@@ -10,6 +10,32 @@
 
     <!-- Carlendar -->
     <div id="tabs-1">
+        <div>
+            <b>สีสัญลักษณ์รถ:</b>
+            <label style="background-color:#3986AA;height:25px;width:200px;">
+                <center>    
+                    ยังไม่ได้ระบุรถ
+                </center>
+            </label>
+            <?php
+            
+                $cars = Car::model()->findAll(); 
+                
+                foreach($cars as $car) {
+                    ?>
+            <label style="background-color:#<?php echo $car->color;?>;height:25px;width:200px;">
+                <center>    
+                    <?php echo $car->name;?>
+                    ทะเบียน:<?php echo $car->serial;?>
+                </center>
+            </label>
+                                
+                <?php
+                    }
+                               
+            ?>
+        </div>
+        
         <div class="pull-right" style="padding-bottom:10px">
             <?php if (Yii::app()->session["username"] == null){ ?>
                 <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/frmlogin" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
@@ -22,13 +48,6 @@
     </div>
 
     
-
-    <div id ="tabs-2"> <?php
-        if (!empty($provider)) { ?>
-        <div id="container" style="width:70%; height:400px;"></div>
-       <?php } ?>
-    </div>
-
 </div>
 
 
@@ -37,35 +56,6 @@
     $(function () {
         // Tab
         $("#tabs").tabs();
-
-        $('#container').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Fruit Consumption'
-            },
-            xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
-            },
-            yAxis: {
-                title: {
-                    text: 'Fruit eaten'
-                }
-            },
-            series: [{
-                    name: 'Jane',
-                    data: [1, 0, 4]
-                }, {
-                    name: 'John',
-                    data: [5, 7, 3]
-                }],
-        });
-
-
-
-
-
 
 
 
@@ -113,7 +103,7 @@ foreach ($model as $data) {
 
     // step 4 set properties for fullcalendar
     echo "{";
-    echo "title: '" . 'เรื่อง' . $data->title . ' (หน่วยงานที่ขอ: ' . $data->company->name . ')' . "',";
+    echo "title: '" . 'เรื่อง' . $data->title . ' (ผู้ขอ: ' . $data->person_name . ')' . "',";
     echo "start: new Date(" . $year_created . "," . $month_created . "," . $day_created . "," . $hour_created . "," . $min_created . "),";
     echo "end: new Date(" . $year_success . "," . $month_success . "," . $day_success . "," . $hour_success . "," . $min_success . "),";
     echo "url: '" . Yii::app()->createUrl('site/orders', array("id" => $data->id)) . "',";

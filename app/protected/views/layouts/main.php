@@ -6,7 +6,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>โปรแกรมจัดการยานพาหนะ เวอร์ชั่น 1.0 พัฒนาโดย นายจีระยุทธ ปิ่นสุวรรณ</title>
+        <title>ระบบจัดการยานพาหนะ เวอร์ชั่น 1.0 พัฒนาโดย นายจีระยุทธ ปิ่นสุวรรณ</title>
 
         <!-- import css bootstrap -->
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
@@ -36,7 +36,7 @@
         <div class="navbar navbar-custom navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-head">
-                    <a class="navbar-brand">โปรแกรมจัดการยานพาหนะ</a>
+                    <a class="navbar-brand">ระบบจัดการยานพาหนะ</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
