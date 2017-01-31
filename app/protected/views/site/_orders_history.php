@@ -5,56 +5,51 @@
 
 <div id="tabs">
     <ul>  
-        <?php if (!empty($provider)) { ?>
+        <?php if (!empty($model)) { ?>
             <li><a href="#tabs-1">ประวัติการขอใช้รถ</a></li> 
         <?php } ?>
     </ul>
-    
+
     <div id ="tabs-1">
         <?php
-             $company_name = Company::model()->findByPk(Yii::app()->session["company_id"]); 
+            $company_name = Company::model()->findByPk(Yii::app()->session["company_id"]);
         ?>
-        
+
         <b><?php echo $text; ?> 
-            <?php if(Yii::app()->session["user_type"] == "ผู้ใช้"){ ?>
-                <font color="blue"><?php echo $company_name->name;?></font>
+            <?php if (Yii::app()->session["user_type"] == "ผู้ใช้") { ?>
+                <font color="blue"><?php echo $company_name->name; ?></font>
             <?php } ?>
         </b>
-        <br/>
+    
+        <div class="pull-right">
+            <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/orders" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
+        </div>
+           
+            <?php
         
-        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/orders" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
-        <?php
-        if (!empty($provider)) {
             $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'car-grid',
-                'dataProvider' => $provider,
+                'id' => 'users-grid',
+                'dataProvider' => $model->search(),
+                'filter' => $model,       
                 'columns' => array(
+                    array( 'name'=>'company_search', 'value'=>'$data->company->name' ),
                     'title',
-                    'company.name',
-                    'person_name',
+                    'place',
                     'datetogo',
                     'datetosuccess',
-                    'person_number',
-                    'status',
-                    array(
-                        'header' => 'แก้ไข',
-                        'class' => 'CLinkColumn',
-                        'imageUrl' => 'images/edit.png',
-                        'labelExpression' => 'แก้ไขข้อมูล',
-                        'urlExpression' => 'Yii::app()->createUrl("site/orders",array("id"=>$data->id))',
-                        'linkHtmlOptions' => array('target' => '_blank'),
-                        'htmlOptions' => array(
-                            'style' => 'text-align:center',
-                            'id' => 'opener'
-                        )
-                    ),
-                )
+                    'person_name',
+                    'status',           
+                   
+                ),
             ));
-        }
+            
         ?>
+        
+       
+            
     </div>
 
- 
+
 
 </div>
 

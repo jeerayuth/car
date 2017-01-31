@@ -100,10 +100,15 @@ class SiteController extends Controller {
         } else {
             $limit = 0;
         }
+         
+        $model= new Orders('search');
+        $model->unsetAttributes(); // clear any default values
+        if(isset($_GET['Orders']))
+            $model->setAttributes($_GET['Orders']);
         
-
+        
          // ใช้กับประวัติการขอรถ
-        if (!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้"){
+      /*  if (!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้"){
             $provider = new CActiveDataProvider('Orders', array(
                 'criteria' => array(
                     'condition' => 'company_id=' . Yii::app()->session["company_id"],
@@ -121,13 +126,15 @@ class SiteController extends Controller {
                 ),
                     'pagination' => false
             ));
-        }
+        }*/
 
-
-        $this->render("//site/ordershistory", array(
-            "provider" => $provider,
+        
+        $this->render("//site/_orders_history", array(
+            "model" => $model,
             "text" => $text,
         ));
+         
+         
  
     }
     

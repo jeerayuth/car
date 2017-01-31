@@ -16,7 +16,9 @@
 
 </div>
 
-
+<?php
+  Yii::app()->clientScript->registerScriptFile("../jquery.js");
+?>
 <script language="javascript">
 
     $(function () {

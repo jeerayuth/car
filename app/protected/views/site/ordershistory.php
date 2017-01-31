@@ -1,6 +1,6 @@
 <?php if (Yii::app()->session["username"] != null): ?>
 	<?php $this->renderPartial("//site/_orders_history",array(
-		"provider" => $provider,
+		"model" => $model,
                 "text" => $text,
 	)); ?>
 <?php  else : ?>

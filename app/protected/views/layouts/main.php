@@ -113,7 +113,7 @@
         <!-- import jquery libary -->
         <?php
         // import js standard jquery
-        Yii::app()->clientScript->registerScriptFile("../jquery.js");
+        //Yii::app()->clientScript->registerScriptFile("../jquery.js");
 
         // import js bootstrap3
         Yii::app()->clientScript->registerScriptFile("../bootstrap/js/bootstrap.min.js");
