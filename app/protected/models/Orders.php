@@ -1,6 +1,7 @@
 <?php
 
 class Orders extends CActiveRecord {
+
     public $company_search;
 
     static function model($className = __CLASS__) {
@@ -40,25 +41,21 @@ class Orders extends CActiveRecord {
     function rules() {
         return array(
             array('title,person_name,person_position,person_number,place,company_id,datetogo,datetosuccess', 'required'),
-            array('title,datetogo,status,company_search', 'safe', 'on'=>'search'),
+            array('title,datetogo,status,company_search', 'safe', 'on' => 'search'),
         );
     }
 
     public function relations() {
-     
+
         return array(
-               
             'activities' => array(self::BELONGS_TO, 'Activities', 'activities_id'),
             'car' => array(self::BELONGS_TO, 'Car', 'car_id'),
             'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
             'driver' => array(self::BELONGS_TO, 'Driver', 'driver_id'),
-        
-                 );                  
-         
+        );
     }
-    
 
-    public function search() {
+    public function search($limit = 30,$company_id = 1) {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
@@ -69,22 +66,37 @@ class Orders extends CActiveRecord {
         $criteria->compare('place', $this->place, true);
         $criteria->compare('person_name', $this->person_name, true);
         $criteria->compare('datetogo', $this->datetogo, true);
-
+        $criteria->compare('status', $this->status, true);
         
+        $criteria->limit = $limit;
+        $criteria->offset = 0;
+        
+        //รอแก้ไขตรงส่วนนี้
+        $criteria->addCondition('company_id=1','AND');
+         
+           
+      /*  if($company_id !=''){
+            $criteria->addCondition('company_id=:company_id');
+            //$criteria->condition = 'company_id=:company_id';
+            $criteria->params=(array(':company_id'=>$company_id));
+        } else {
+            $criteria->condition = '';
+        } */
+
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-            'sort'=>array(
-            'attributes'=>array(
-            'company_search'=>array(
-                'asc'=>'company.name',
-                'desc'=>'company.name DESC',
-            ),
-            '*',
-        )
+            'Pagination' => FALSE,
+            'sort' => array(
+                'defaultOrder' => 'datetogo DESC',
+                'attributes' => array(
+                    'company_search' => array(
+                        'asc' => 'company.name',
+                        'desc' => 'company.name DESC',
+                    ),
+                    '*',
+                )
         )));
     }
-    
-    
 
 }
 

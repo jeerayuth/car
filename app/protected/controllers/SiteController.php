@@ -90,13 +90,16 @@ class SiteController extends Controller {
         
          $limit = 0;
          $text = "";
+         $company_id = "";
         
         if(!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้") {
             $limit = 50;
+            $company_id = Yii::app()->session["company_id"];
             $text = "50 อันดับการขอใช้รถล่าสุดภายในหน่วยงาน: ";
         } else if(!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
-            $limit = 120;
-            $text = "120 อันดับการขอใช้รถล่าสุด";
+            $limit = 150;
+            $company_id = "";
+            $text = "150 อันดับการขอใช้รถล่าสุด";
         } else {
             $limit = 0;
         }
@@ -129,9 +132,11 @@ class SiteController extends Controller {
         }*/
 
         
-        $this->render("//site/_orders_history", array(
+        $this->render("//site/ordershistory", array(
             "model" => $model,
+            "company_id" => $company_id,
             "text" => $text,
+            "limit" => $limit,
         ));
          
          

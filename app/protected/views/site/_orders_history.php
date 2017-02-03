@@ -29,7 +29,7 @@
         
             $this->widget('zii.widgets.grid.CGridView', array(
                 'id' => 'users-grid',
-                'dataProvider' => $model->search(),
+                'dataProvider' => $model->search($limit,$company_id),
                 'filter' => $model,       
                 'columns' => array(
                     array( 'name'=>'company_search', 'value'=>'$data->company->name' ),
