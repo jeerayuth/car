@@ -12,7 +12,7 @@
 
     <div id ="tabs-1">
         <?php
-            $company_name = Company::model()->findByPk(Yii::app()->session["company_id"]);
+        $company_name = Company::model()->findByPk(Yii::app()->session["company_id"]);
         ?>
 
         <b><?php echo $text; ?> 
@@ -20,33 +20,42 @@
                 <font color="blue"><?php echo $company_name->name; ?></font>
             <?php } ?>
         </b>
-    
+
         <div class="pull-right">
             <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/orders" class="btn btn-info" role="button"><i class="glyphicon glyphicon-plus-sign"></i> เพิ่มกิจกรรมการขอใช้รถ</a>
         </div>
-           
-            <?php
-        
-            $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'users-grid',
-                'dataProvider' => $model->search($limit,$company_id),
-                'filter' => $model,       
-                'columns' => array(
-                    array( 'name'=>'company_search', 'value'=>'$data->company->name' ),
-                    'title',
-                    'place',
-                    'datetogo',
-                    'datetosuccess',
-                    'person_name',
-                    'status',           
-                   
+
+        <?php
+        $this->widget('zii.widgets.grid.CGridView', array(
+            'id' => 'users-grid',
+            'summaryText' => '',
+            'dataProvider' => $model->search($limit, $company_id),
+            'filter' => $model,
+            'columns' => array(
+                array('name' => 'company_search', 'value' => '$data->company->name'),
+                'title',
+                'place',
+                'datetogo',
+                'datetosuccess',
+                'person_name',
+                'status',
+                array(
+                    'header' => 'แก้ไข',
+                    'class' => 'CLinkColumn',
+                    'imageUrl' => 'images/edit.png',
+                    'labelExpression' => 'แก้ไขข้อมูล',
+                    'urlExpression' => 'Yii::app()->createUrl("site/orders",array("id"=>$data->id))',
+                    'htmlOptions' => array(
+                        'style' => 'text-align:center',
+                        'id' => 'opener'
+                    )
                 ),
-            ));
-            
+            ),
+        ));
         ?>
-        
-       
-            
+
+
+
     </div>
 
 

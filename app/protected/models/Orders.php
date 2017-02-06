@@ -57,7 +57,7 @@ class Orders extends CActiveRecord {
 
     public function search($limit = 30,$company_id = 1) {
         // @todo Please modify the following code to remove attributes that should not be searched.
-
+        
         $criteria = new CDbCriteria;
         $criteria->with = array('company');
         $criteria->compare('company.name', $this->company_search, true);
@@ -71,17 +71,12 @@ class Orders extends CActiveRecord {
         $criteria->limit = $limit;
         $criteria->offset = 0;
         
-        //รอแก้ไขตรงส่วนนี้
-        $criteria->addCondition('company_id=1','AND');
-         
-           
-      /*  if($company_id !=''){
-            $criteria->addCondition('company_id=:company_id');
-            //$criteria->condition = 'company_id=:company_id';
-            $criteria->params=(array(':company_id'=>$company_id));
+        //รอแก้ไขตรงส่วนนี้        
+        if($company_id !=''){
+             $criteria->addCondition('company_id='.$company_id,'AND');
         } else {
-            $criteria->condition = '';
-        } */
+            //$criteria->condition = '';
+        } 
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

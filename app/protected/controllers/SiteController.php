@@ -83,8 +83,7 @@ class SiteController extends Controller {
         ));
     }
 
- 
-     
+  
     //
     public function actionOrdersHistory() {
         
@@ -93,13 +92,13 @@ class SiteController extends Controller {
          $company_id = "";
         
         if(!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้") {
-            $limit = 50;
+            $limit = 100;
             $company_id = Yii::app()->session["company_id"];
-            $text = "50 อันดับการขอใช้รถล่าสุดภายในหน่วยงาน: ";
+            $text = "100 อันดับการขอใช้รถล่าสุดภายในหน่วยงาน: ";
         } else if(!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
-            $limit = 150;
+            $limit = 300;
             $company_id = "";
-            $text = "150 อันดับการขอใช้รถล่าสุด";
+            $text = "300 อันดับการขอใช้รถล่าสุด";
         } else {
             $limit = 0;
         }
