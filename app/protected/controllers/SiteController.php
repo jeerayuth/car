@@ -107,30 +107,7 @@ class SiteController extends Controller {
         $model->unsetAttributes(); // clear any default values
         if(isset($_GET['Orders']))
             $model->setAttributes($_GET['Orders']);
-        
-        
-         // ใช้กับประวัติการขอรถ
-      /*  if (!empty(Yii::app()->session["company_id"]) &&  Yii::app()->session["user_type"]=="ผู้ใช้"){
-            $provider = new CActiveDataProvider('Orders', array(
-                'criteria' => array(
-                    'condition' => 'company_id=' . Yii::app()->session["company_id"],
-                    'limit' => $limit,
-                    'order' => 'datetogo DESC',
-                    ),
-                   'pagination' => false
-            ));
-                    
-        } else if (!empty(Yii::app()->session["company_id"]) &&  (Yii::app()->session["user_type"]=="ผู้อนุมัติ" or Yii::app()->session["user_type"]=="แอดมิน")) {
-            $provider = new CActiveDataProvider('Orders', array(
-                'criteria' => array(
-                    'limit' => $limit,
-                    'order' => 'dateadd DESC',
-                ),
-                    'pagination' => false
-            ));
-        }*/
-
-        
+              
         $this->render("//site/ordershistory", array(
             "model" => $model,
             "company_id" => $company_id,

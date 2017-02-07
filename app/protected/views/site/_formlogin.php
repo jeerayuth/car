@@ -1,3 +1,6 @@
+<?php
+    Yii::app()->clientScript->registerScriptFile("../jquery.js");
+?>
 <br/>
 <br/>
 <br/>

@@ -34,7 +34,8 @@ class Orders extends CActiveRecord {
             "company_id" => "หน่วยงาน",
             "driver_id" => "พนักงานขับรถ",
             "car_id" => "รถคันหมายเลข",
-            "status" => "สถานะการขอใช้รถ"
+            "status" => "สถานะการขอใช้รถ",
+            "company_search" => "หน่วยงาน",
         );
     }
 

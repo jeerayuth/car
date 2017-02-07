@@ -1,3 +1,6 @@
+<?php
+    Yii::app()->clientScript->registerScriptFile("../jquery.js");
+?>
 <ol class="breadcrumb">
   <li><a href="#">ตั้งค่าโปรแกรม</a></li>
   <li class="active">หน่วยงาน</li>
