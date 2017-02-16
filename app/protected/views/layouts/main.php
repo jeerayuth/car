@@ -14,7 +14,7 @@
 
         <!-- import css jquery-ui -->
         <link rel="stylesheet" href="../jquery-ui/css/humanity/jquery-ui.1.11.1.custom.min.css" />
-         <link rel="stylesheet" href="../jquery-ui/css/humanity/jquery-ui.theme.min.bak.css" />
+        <link rel="stylesheet" href="../jquery-ui/css/humanity/jquery-ui.theme.min.bak.css" />
 
         <!-- import css datetimepicker -->
         <link rel="stylesheet" href="../datetimepicker/jquery.datetimepicker.css" />
@@ -44,8 +44,8 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (Yii::app()->session["username"] != null) { ?>
-                        
-                      
+
+
                             <li >
                                 <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site" ><i class="glyphicon glyphicon-calendar"></i> ปฏิทินขอรถ </a>
                             </li> 
@@ -55,38 +55,39 @@
                             <li>
                                 <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/graph" ><i class="glyphicon glyphicon-signal"></i> กราฟสถิติ </a>
                             </li>
-                            
-                                                 
-                        <?php if ((Yii::app()->session["user_type"] == "แอดมิน") OR (Yii::app()->session["user_type"] == "ผู้อนุมัติ")){ ?>
-                           
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-list"></i> รายงานการใช้รถ <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=countuser"><i class="glyphicon glyphicon-list-alt"></i> รายงานผู้ขอใช้รถ</a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_car&point=countcar"><i class="glyphicon glyphicon-list-alt"></i> รายงานการใช้รถแต่ละคัน </a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=countdriver"><i class="glyphicon glyphicon-list-alt"></i> รายงานครั้งการทำงานของ พขร.</a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=countrepair"><i class="glyphicon glyphicon-list-alt"></i> รายงานการซ่อมรถ</a></i>
-                                </ul>
-                            </li>
-                        <?php } ?>
-                            
-                            
-                              <?php if (Yii::app()->session["user_type"] == "แอดมิน"): ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> ตั้งค่า <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/brand"><i class="glyphicon glyphicon-pencil"></i> หน่วยงาน</a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/user"><i class="glyphicon glyphicon-user"></i> ผู้ใช้งานโปรแกรม</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/car"><i class="glyphicon glyphicon-road"></i> รถยนต์</a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/company"><i class="glyphicon glyphicon-user"></i> ผู้ขอใช้รถ</a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/driver"><i class="glyphicon glyphicon-user"></i> พนักงานขับรถ</a></li>
-                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/activities"><i class="glyphicon glyphicon-pencil"></i> กิจกรรมการใช้รถ</a></li>
-                                </ul>
-                            </li>
-                        <?php endif ?>
-                            
-                            
+
+
+                            <?php if ((Yii::app()->session["user_type"] == "แอดมิน") OR ( Yii::app()->session["user_type"] == "ผู้อนุมัติ")) { ?>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-list"></i> รายงานการใช้รถ <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=listrequestbyusers"><i class="glyphicon glyphicon-list-alt"></i> รายงานรออนุมัติใช้รถ</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=countuser"><i class="glyphicon glyphicon-list-alt"></i> รายงานสรุปผู้ขอใช้รถ</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_car&point=countcar"><i class="glyphicon glyphicon-list-alt"></i> รายงานการใช้รถแต่ละคัน </a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=countdriver"><i class="glyphicon glyphicon-list-alt"></i> รายงานครั้งการทำงานของ พขร.</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=report/getform&form=form_default&point=countrepair"><i class="glyphicon glyphicon-list-alt"></i> รายงานการซ่อมรถ</a></i>
+                                    </ul>
+                                </li>
+                            <?php } ?>
+
+
+                            <?php if (Yii::app()->session["user_type"] == "แอดมิน"): ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> ตั้งค่า <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/brand"><i class="glyphicon glyphicon-pencil"></i> หน่วยงาน</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/user"><i class="glyphicon glyphicon-user"></i> ผู้ใช้งานโปรแกรม</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/car"><i class="glyphicon glyphicon-road"></i> รถยนต์</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/company"><i class="glyphicon glyphicon-user"></i> ผู้ขอใช้รถ</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/driver"><i class="glyphicon glyphicon-user"></i> พนักงานขับรถ</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/activities"><i class="glyphicon glyphicon-pencil"></i> กิจกรรมการใช้รถ</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif ?>
+
+
                             <li><a href="#"><i class="glyphicon glyphicon-user"></i> <?php echo Yii::app()->session["username"]; ?></a></li>
                             <li><a class="confirm-link" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php?r=site/logout")"><i class="glyphicon glyphicon-off"></i> ออกจากระบบ</a></li>
 
@@ -109,12 +110,11 @@
         <div id="dialog" style="display:none" >
             คุณต้องการออกจากโปรแกรม?
         </div>
-        
+
         <!-- import jquery libary -->
         <?php
         // import js standard jquery
         //Yii::app()->clientScript->registerScriptFile("../jquery.js");
-
         // import js bootstrap3
         Yii::app()->clientScript->registerScriptFile("../bootstrap/js/bootstrap.min.js");
 
@@ -135,7 +135,7 @@
 
         // import js highchart
         Yii::app()->clientScript->registerScriptFile("../highcharts/highcharts.js");
-      
+
         // import js custom
         Yii::app()->clientScript->registerScriptFile("../_js.js");
         ?>

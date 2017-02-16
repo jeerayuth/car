@@ -155,6 +155,27 @@ class ReportController extends Controller
 				"dateend" => $dateend,
 			));
 	}
+        
+        /* รายงานรายการผู้ขอใช้รถยนต์ */
+	public function actionListRequestByUsers(){
+
+		$datestart = $_POST['datestart'];
+		$dateend = $_POST['dateend'];
+
+		$sql = "SELECT
+                                o.*, c.`name` as company_name
+                        FROM orders o
+                        LEFT OUTER JOIN company c ON c.id = o.company_id
+                        WHERE datetogo BETWEEN '". $datestart ."' AND '" .$dateend ."' ";
+
+			$model = Yii::app()->db->createCommand($sql)->queryAll();
+
+			$this->render("listrequestbyusers", array(
+				"model" => $model,
+				"datestart" => $datestart,
+				"dateend" => $dateend,
+			));
+	}
 
 
 }
